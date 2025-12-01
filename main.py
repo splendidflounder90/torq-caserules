@@ -108,7 +108,7 @@ def main():
             else:
                 rule_check = CUSTOM_RULES(case_data,event_data,rules_list)
                 rule_matches = rule_check.process_rules()
-                print(json.dumps(rule_matches,indent=2))
+                print(json.dumps({"matches":rule_matches,"count":len(rule_matches)},indent=2))
     else:
         raise ValueError("Missing required environment variables!")
 
