@@ -90,17 +90,25 @@ def main():
         rules_list = json.loads(os.getenv("RULE_LIST","")) if is_json(os.getenv("RULE_LIST","")) else None
         case_data = json.loads(os.getenv("CASE_DATA","")) if is_json(os.getenv("CASE_DATA","")) else None
         event_data = json.loads(os.getenv("EVENT_DATA","")) if is_json(os.getenv("EVENT_DATA","")) else None
+        is_debug = True if os.getenv("DEBUG_MODE","").lower() == "true" else False
 
-
-        if not isinstance(rules_list, list):
-            raise ValueError("Invalid Rules List!")
-
-        if not (isinstance(case_data, dict) or isinstance(event_data, dict)):
-            raise ValueError("Invalid Case or Event Data!")
+        if is_debug:
+            debug_output = {
+                "rules_list": rules_list,
+                "case_data": case_data,
+                "event_data": event_data
+            }
+            print(json.dumps(debug_output,indent=2),end="")
         else:
-            rule_check = CUSTOM_RULES(case_data,event_data,rules_list)
-            rule_matches = rule_check.process_rules()
-            print(json.dumps(rule_matches,indent=2))
+            if not isinstance(rules_list, list):
+                raise ValueError("Invalid Rules List!")
+
+            if not (isinstance(case_data, dict) or isinstance(event_data, dict)):
+                raise ValueError("Invalid Case or Event Data!")
+            else:
+                rule_check = CUSTOM_RULES(case_data,event_data,rules_list)
+                rule_matches = rule_check.process_rules()
+                print(json.dumps(rule_matches,indent=2),end="")
     else:
         raise ValueError("Missing required environment variables!")
 
