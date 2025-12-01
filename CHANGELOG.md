@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/splendidflounder90/torq-caserules/compare/v1.0.2...v1.0.3) (2025-12-01)
+
+
+### Bug Fixes
+
+* fix output as json ([962f43a](https://github.com/splendidflounder90/torq-caserules/commit/962f43a05bc368f155792943e730c7fd0fb962af))
+
 ## [1.0.2](https://github.com/splendidflounder90/torq-caserules/compare/v1.0.1...v1.0.2) (2025-12-01)
 
 
