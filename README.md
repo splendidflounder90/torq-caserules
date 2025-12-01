@@ -30,10 +30,10 @@
 <br />
 <div align="center">  
 
-<h3 align="center">container-smbclient</h3>
+<h3 align="center">torq-caserules</h3>
 
   <p align="center">
-    Containerized wrapper of the smbprotocol python package
+    Rule evaluation of case and event data.
     <br />
     <a href="https://github.com/splendidflounder90/torq-caserules"><strong>Explore the docs »</strong></a>
     <br />

@@ -2,7 +2,7 @@ import os
 import json
 
 class CUSTOM_RULES:
-    def __init__(self, case_data: dict, event_data: dict, rules: list):
+    def __init__(self, case_data, event_data, rules):
         self.case_data = case_data if case_data else {}
         self.event_data = event_data
         self.rules = rules
@@ -69,7 +69,15 @@ class CUSTOM_RULES:
                 raise ValueError("Rule List is invalid!")
             
         return self.rule_matches
-    
+
+def is_json(json_string: str) -> bool:
+    try:
+        json.loads(json_string)
+        return True
+    except ValueError:
+        return False
+
+
 def validate_environment_variables(required_vars:list):    
     for var in required_vars:
         if not os.getenv(var):
@@ -79,19 +87,20 @@ def validate_environment_variables(required_vars:list):
 def main():
     if validate_environment_variables(["RULE_LIST"]):
         
-        rules_list = json.loads(os.getenv("RULE_LIST",""))
-        case_data = json.loads(os.getenv("CASE_DATA",""))
-        event_data = json.loads(os.getenv("EVENT_DATA",""))
+        rules_list = json.loads(os.getenv("RULE_LIST","")) if is_json(os.getenv("RULE_LIST","")) else None
+        case_data = json.loads(os.getenv("CASE_DATA","")) if is_json(os.getenv("CASE_DATA","")) else None
+        event_data = json.loads(os.getenv("EVENT_DATA","")) if is_json(os.getenv("EVENT_DATA","")) else None
+
 
         if not isinstance(rules_list, list):
             raise ValueError("Invalid Rules List!")
 
         if not (isinstance(case_data, dict) or isinstance(event_data, dict)):
             raise ValueError("Invalid Case or Event Data!")
-    
-        rule_check = CUSTOM_RULES(case_data,event_data,rules_list)
-        rule_matches = rule_check.process_rules()
-        print(json.dumps(rule_matches,indent=2))
+        else:
+            rule_check = CUSTOM_RULES(case_data,event_data,rules_list)
+            rule_matches = rule_check.process_rules()
+            print(json.dumps(rule_matches,indent=2))
     else:
         raise ValueError("Missing required environment variables!")
 
