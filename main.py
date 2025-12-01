@@ -98,7 +98,7 @@ def main():
                 "case_data": case_data,
                 "event_data": event_data
             }
-            print(json.dumps(debug_output),end="")
+            print(json.dumps(debug_output,indent=2))
         else:
             if not isinstance(rules_list, list):
                 raise ValueError("Invalid Rules List!")
@@ -108,7 +108,7 @@ def main():
             else:
                 rule_check = CUSTOM_RULES(case_data,event_data,rules_list)
                 rule_matches = rule_check.process_rules()
-                print(json.dumps(rule_matches),end="")
+                print(json.dumps(rule_matches,indent=2))
     else:
         raise ValueError("Missing required environment variables!")
 
