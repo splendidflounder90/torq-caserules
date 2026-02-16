@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/splendidflounder90/torq-caserules/compare/v1.0.5...v1.0.6) (2026-02-16)
+
+
+### Bug Fixes
+
+* handle when context is empty ([77c123f](https://github.com/splendidflounder90/torq-caserules/commit/77c123fc04e8aca58826cfc005a2391e64071b3a))
+
 ## [1.0.5](https://github.com/splendidflounder90/torq-caserules/compare/v1.0.4...v1.0.5) (2025-12-01)
 
 
