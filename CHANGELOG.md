@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/splendidflounder90/torq-caserules/compare/v1.0.4...v1.0.5) (2025-12-01)
+
+
+### Bug Fixes
+
+* improve output ([520339c](https://github.com/splendidflounder90/torq-caserules/commit/520339c1d8ee1981c342af4369715a3d63aab685))
+
 ## [1.0.4](https://github.com/splendidflounder90/torq-caserules/compare/v1.0.3...v1.0.4) (2025-12-01)
 
 
