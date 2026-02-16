@@ -31,19 +31,23 @@ class CUSTOM_RULES:
         Searches the context recursively using the path to then validate
         if the value matches based on the match_type and match_value        
         """
-        if match_type and match_value:
-            if isinstance(context,dict):
-                if len(path) > 0 and path[0] in context:
-                    return self.__check_match(context[path[0]], path[1:], match_type, match_value)
-                else:
-                    return False
-            elif isinstance(context, list):
-                return any(self.__check_match(c, path, match_type, match_value) for c in context)
-            else:
-                if (match_type == "Equals" and match_value == context) or (match_type == "Contains" and match_value in context):
-                    return True
-                else:
-                    return False
+        if context:
+            if match_type and match_value:            
+                if isinstance(context,dict):
+                    if len(path) > 0 and path[0] in context:
+                        return self.__check_match(context[path[0]], path[1:], match_type, match_value)
+                    else:
+                        return False
+                elif isinstance(context, list):
+                    return any(self.__check_match(c, path, match_type, match_value) for c in context)
+                else:        
+                    if (match_type == "Equals" and match_value == context) or (match_type == "Contains" and match_value in context):
+                        return True
+                    else:
+                        return False
+        else:
+            return False
+                    
 
     def __full_match(self, matchOn: list) -> bool:
         result = []
